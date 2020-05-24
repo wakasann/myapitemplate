@@ -1,0 +1,19 @@
+schemes:
+  - https
+consumes:
+  - application/x-www-form-urlencoded
+paths:
+  $ref#tools: "./paths/tools.yaml"
+  $ref#user: "./paths/user.yaml"
+definitions:
+  $ref#http-status: "./definitions/http_status.yaml"
+tags:
+  - name: tools
+    description: 工具
+  - name: user
+    description: 顧客
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header

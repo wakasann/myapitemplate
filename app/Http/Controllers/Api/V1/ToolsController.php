@@ -59,6 +59,38 @@ class ToolsController extends BaseController
         return array('url'=>$img_path);
     }
 
+    public function upload_base64(Request $request)
+    {
+        $credentials = $request->all();
+        if(!isset($credentials['file'])){
+            return $this->responseError('傳輸數據出錯');
+        }
+        $base64_img = trim($credentials['file']);
+        if(!isset($credentials['dir'])){
+            $credentials['dir'] = 'temp';
+        }
+
+        if(preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_img, $result)){
+            $entension = $result[2];//图片后缀
+            $filename = uniqid().mt_rand(100,999).'.'.$entension;
+            $new_file = public_path().'/upload/'.$credentials['dir'].'/'.$filename;
+            $host = url('/');
+            if(file_put_contents($new_file, base64_decode(str_replace($result[1], '', $base64_img)))){
+                $img_path = $host.'/upload/'.$credentials['dir'].'/'.$filename;
+
+                return $this->responseSuccess(array('url'=>$img_path));
+
+            }else{
+                return $this->responseError('图片上传失败');
+            }
+
+        }else{
+            return $this->responseError('文件错误');
+
+        }
+
+    }
+
     public function uploadvideo(Request $request)
     {
         if(!isset($_FILES['file'])){

@@ -1,0 +1,90 @@
+/user/login:
+  post:
+    consumes:
+      - application/x-www-form-urlencoded
+    tags:
+      - user
+    summary: 登录
+    description: 登录
+    parameters:
+      - name: phone
+        in: formData
+        description: 手机号码
+        required: true
+        type: string
+      - name: zone
+        in: formData
+        description: 區號
+        required: false
+        type: string
+      - name: password
+        in: formData
+        description: 密碼
+        required: true
+        type: string
+      - name: type
+        in: formData
+        description: 网红app时设置为2
+        required: false
+        type: integer
+    responses:
+      200:
+        description: 请求成功
+    security:
+      - Bearer: []
+
+/user/signup:
+  post:
+    consumes:
+      - application/x-www-form-urlencoded
+    tags:
+      - user
+    summary: 注册
+    description: 注册
+    parameters:
+      - name: phone
+        in: formData
+        description: 手机号码
+        required: true
+        type: string
+      - name: zone
+        in: formData
+        description: 區號
+        required: false
+        type: string
+      - name: code
+        in: formData
+        description: 驗證碼
+        required: true
+        type: string
+    responses:
+      200:
+        description: 请求成功
+    security:
+      - Bearer: []
+
+/user/logout:
+  get:
+    tags:
+      - user
+    summary: 退出登錄
+    description: 退出登錄
+    responses:
+      200:
+        description: 成功
+    security:
+      - Bearer: []
+
+/user/userinfo:
+  get:
+    tags:
+      - user
+    summary: 獲取個人資料
+    description: 獲取個人資料
+    responses:
+      200:
+        description: 请求成功
+    security:
+      - Bearer: []
+
+

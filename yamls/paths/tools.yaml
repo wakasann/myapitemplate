@@ -1,0 +1,127 @@
+/sms:
+  post:
+    consumes:
+      - application/x-www-form-urlencoded
+    tags:
+      - tools
+    summary: 发送短信验证码
+    description: 发送短信验证码
+    operationId: sms
+    parameters:
+      - name: phone
+        in: formData
+        description: 电话号码
+        required: true
+        type: string
+      - name: zone
+        in: formData
+        description: 电话区号
+        required: false
+        type: string
+    responses:
+      '200':
+        description: sms发送成功
+      '401':
+        description: sms发送失败
+    security:
+      - Bearer: []
+
+/upload:
+  post:
+    consumes:
+      - multipart/form-data
+    tags:
+      - tools
+    summary: 上传图片
+    description: 上传图片
+    operationId: upload
+    parameters:
+      - name: file
+        in: formData
+        description: 圖片
+        required: true
+        type: file
+      - name: dir
+        in: formData
+        description: 存放目錄
+        enum: ['avatar','banner','activity','temp']
+        default: temp
+        required: true
+        type: string
+    responses:
+      '200':
+        description: '圖片上傳成功,并返回图片路徑'
+      '400':
+        description: 沒有圖片上傳
+    security:
+      - Bearer: []
+
+/upload_base64:
+  post:
+    consumes:
+      - multipart/form-data
+    tags:
+      - tools
+    summary: 上传base64图片
+    description: 上传base64图片
+    operationId: upload_base64
+    parameters:
+      - name: file
+        in: formData
+        description: 圖片
+        required: true
+        type: string
+      - name: dir
+        in: formData
+        description: 存放目錄
+        enum: ['avatar','banner','activity','temp']
+        default: temp
+        required: true
+        type: string
+    responses:
+      '200':
+        description: '圖片上傳成功,并返回图片路徑'
+      '400':
+        description: 沒有圖片上傳
+    security:
+      - Bearer: []
+
+
+/tools/token_check:
+  get:
+    tags:
+      - tools
+    summary: token驗證
+    description: token驗證
+    operationId: token_check
+    responses:
+      '200':
+        description: 成功
+      '401':
+        description: 失败
+    security:
+      - Bearer: []
+
+
+
+/delete/image:
+  get:
+    tags:
+      - tools
+    summary: 删除图片
+    description: 删除图片
+    operationId: delete_image
+    parameters:
+      - name: url
+        in: query
+        description: url
+        required: true
+        type: string
+    responses:
+      '200':
+        description: 成功
+      '401':
+        description: 失败
+    security:
+      - Bearer: []
+

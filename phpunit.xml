@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="bootstrap/autoload.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -9,11 +9,11 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="Feature">
+        <testsuite name="Feature Tests">
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
 
-        <testsuite name="Unit">
+        <testsuite name="Unit Tests">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
@@ -22,17 +22,12 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
-    <!--<logging>-->
-    <!--<log type="coverage-html" target="./public/test-result/report" lowUpperBound="35"-->
-    <!--highLowerBound="70"/>-->
-    <!--</logging>-->
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
-        <env name="DB_DATABASE" value="test_db_name"/>
-        <env name="DB_USERNAME" value="homestead"/>
-        <env name="DB_PASSWORD" value="secret"/>
+        <env name="DB_CONNECTION" value="mysql"/>
+        <env name="DB_DATABASE" value="demo"/>
     </php>
 </phpunit>

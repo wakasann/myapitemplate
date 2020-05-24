@@ -1,0 +1,13 @@
+swagger: '2.0'
+info:
+  title: demo App api
+  description: 'demo App api swagger文档'
+  termsOfService: ''
+  contact:
+    email: example@example.com
+  version: 1.0.0
+
+
+host: 'localhost'
+basePath: /mybaseapi/public/api
+$ref#common: "./common.yaml"

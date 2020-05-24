@@ -1,0 +1,29 @@
+http_success:
+  description: 请求成功
+http_unauthorized:
+  description: 没有登录或者登录的token过期
+NotFound:
+  description: The specified resource was not found
+Unauthorized:
+  description: 没有登录或者登录的token过期
+UnprocessableEntity:
+  description: 提交的数据未通过验证
+response_format:
+  properties:
+    success:
+      type: boolean
+      description: '请求的状态,true:成功 false:失败'
+      example: true
+    error_code:
+      type: integer
+      format: int32
+      description: '返回的错误码,0: 成功,大于0: 失败'
+      example: '0'
+    error_msg:
+      type: string
+      description: '错误信息，当非请求成功，error_msg将显示对应的错误信息'
+      example: ''
+    data:
+      type: string
+      description: '请求成功返回的响应资料'
+      example: '[]'
