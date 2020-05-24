@@ -1,3 +1,16 @@
-user:
-  username: 'test'
-  password: '123456'
+routes:
+  tools:
+    token_check: 'api/tools/token_check'
+  user:
+    login: 'api/user/login'
+    profile: 'api/user/profile'
+    update: 'api/user/update'
+data:
+    jwt_token: ''
+    user:
+      login:
+        zone: 86
+        phone: '123456'
+        password: '123456'
+      update:
+        nickname: '測試用戶昵稱'

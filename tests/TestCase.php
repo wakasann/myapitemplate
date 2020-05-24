@@ -4,12 +4,17 @@ namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use JWTAuth;
+use Faker\Factory as Faker;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
     protected static $tablesToReseed = [];
     public $testData; //测试数据
+    /**
+     * @var \Faker\Generator
+     */
+    protected $faker;
 
     public function seed($class = 'DatabaseSeeder', array $tables = [])
     {
@@ -83,6 +88,41 @@ abstract class TestCase extends BaseTestCase
             $this->testData = $values;
         }
 
+    }
+
+    public function getUserJwtToken(){
+        return [
+            'Authorization' => 'Bearer '.$this->testData['data']['jwt_token']
+        ];
+    }
+
+    /**
+     * 获取路由列表或者单个路由
+     * @param string $group 路由组
+     * @param string $action 路由下标
+     * @return string
+     */
+    public function getRouteData($group,$action = ''){
+        $routes = $this->testData['routes'][$group];
+        if($action){
+            $routes = $routes[$action];
+        }
+        return $routes;
+    }
+
+
+    /**
+     * 获取测试数据组或者单个测试数据组
+     * @param string $group 数据组
+     * @param string $item_key 数据组下标
+     * @return mixed
+     */
+    public function getGroupData($group,$item_key = ''){
+        $groupData = $this->testData['data'][$group];
+        if($item_key){
+            $groupData = $groupData[$item_key];
+        }
+        return $groupData;
     }
 
     /**
